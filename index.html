@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dist/css/main.css"/>
+    <!-- Se não possuir um favicon, remova a linha abaixo ou adicione o arquivo favicon.ico -->
+<link rel="icon" href="favicon.ico" />
     <title>Clone Disney+</title>
 </head>
 <body>
@@ -246,8 +248,48 @@
         </ul>    
     </section>
 
+    <footer class="footer">
+        <div class="footer__container">
+          <img class="footer__logo" src="./src/images/disneyplus.svg" alt="Disney+" />
+        <ul class="footer__links">
+            <li class="footer__links__item">
+                <div class="language-selector">
+                  <img src="./dist/images/icones/globe.svg" alt="globo terrestre">
+                    <select>
+                        <option>Portugues</option>
+                        <option>English</option>
+                        <option>Espanhol</option>
+                    </select>  
+                </div>
+                
+            </li>
+            <li class="footer__links__item">
+                <a href="#" class="text--small">Sobre Termos e condiçoes de uso.</a>
+            </li>
+            <li class="footer__links__item">
+                <a href="#" class="text--small">Politica de privacidade.</a>
+            </li>
+            <li class="footer__links__item">
+                <a href="#" class="text--small">Proteção de dados no Brasil.</a>
+            </li>
+            <li class="footer__links__item">
+                <a href="#" class="text--small">Anuncios realizados.</a>
+            </li>
+            <li class="footer__links__item">
+                <a href="#" class="text--small">Dispositivos compativeis.</a>
+            </li>
+        </ul>
+        <p class="text--small">
+            @Disney,Disney+ é um serviço de streaming que oferece filmes, séries e documentários da Disney, Pixar, Marvel, Star Wars e National Geographic. O serviço está disponível em diversos dispositivos, incluindo smart TVs, consoles de videogame, tablets e smartphones.
+        </p> 
+        <p class="text--small">*O valor pode variar de acordo com a sua região.
+        </p>
+            
 
-    <script src="./dist/js/main.js"></script>
+    </footer>
+
+
+    <script src="./src/main.js"></script>
 
 </body>
 </html>
