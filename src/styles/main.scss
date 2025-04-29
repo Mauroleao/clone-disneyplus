@@ -2,7 +2,8 @@
 @use 'variaveis';
 @use '_shows';
 @use '_plans';
-@use "available-devices";
+@use 'available-devices';
+@use 'faq';
 
 @font-face {
     font-family: Avenir;

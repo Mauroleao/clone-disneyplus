@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", function () {
   const buttons = document.querySelectorAll('[data-tab-button]');
+  const qustions = document.querySelectorAll("[data-faq-question]");
   
 
     for (let i = 0; i < buttons.length; i++) {
@@ -14,9 +15,21 @@ document.addEventListener("DOMContentLoaded", function () {
                
         });
 
-    }       
-
+    }    
+    
+    
+  for (let i = 0; i < qustions.length; i++) {
+    qustions[i].addEventListener("click", abreOuFechaResposta);
+  }
 });
+
+function abreOuFechaResposta(elemento) {
+  const classe = "faq__questions__item--is-open";
+  const elementoPai = elemento.target.parentNode;
+
+  elementoPai.classList.toggle(classe);
+
+}
 
 
 function removeBotaoAtivo() {
