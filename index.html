@@ -4,12 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="dist/css/main.css"/>
-    <!-- Se não possuir um favicon, remova a linha abaixo ou adicione o arquivo favicon.ico -->
 <link rel="icon" href="favicon.ico" />
     <title>Clone Disney+</title>
 </head>
 <body>
-    <section class="hero">
+    <header class="header"> 
+        <div class="header__container">
+            <h1 class="hidden">
+                <img class="header__logo" src="./src/images/disneyplus.svg" alt="Disney+" />
+            </h1>
+            <ul class="header__links">
+                <li class="header__links__item">
+                    <a href="#" class="button button--secondary">Assine já</a>
+                </li>
+                <li class="header__links__item">
+                    <a href="#" class="button button--dark">Entrar</a>
+                </li>
+            </ul>
+        </div>
+    </header>
+            <section class="hero">
       <div class="hero__content">
             <h1 class="hero__content__branding">
                 <img src="./src/images/disneyplus.svg" alt="Disney+" />
