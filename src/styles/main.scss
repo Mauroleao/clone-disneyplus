@@ -30,6 +30,11 @@
 
 }
 
+section {
+    display: block;
+    unicode-bidi: isolate;
+}
+
 
 
 body {
@@ -117,7 +122,7 @@ body {
 .image-text-section {
     padding: 5.6vw;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 1fr;
     align-items: center;
 
   img {
@@ -147,13 +152,15 @@ body {
     &__text_container {
       position: absolute;
       top: 0;
-      left: 50%;
+      right: 0;
+      left: auto;
       height: 100%;
       width: calc(50% - 5.6vw);
       display: flex;
       flex-direction: column;
       justify-content: center;
-      
+      align-items: flex-end;
+      text-align: right;
     }
 
   }

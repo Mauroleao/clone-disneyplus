@@ -10,6 +10,14 @@
 
     &--is-hidden {
         background-color: transparent;
+        transition: background-color .5s ease;
+
+        .header {
+            &__logo, &__links__item:first-child {
+                opacity: 0;
+                visibility: hidden;
+            }
+        }
 
         &__logo,
         &__links__item:first-child {
