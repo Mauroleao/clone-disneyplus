@@ -1,6 +1,6 @@
 const gulp = require("gulp");
 const sass = require("gulp-sass")(require("sass"));
-const imagemin = require("gulp-imagemin");
+// const imagemin = require("gulp-imagemin"); // Removido completamente
 const uglify = require("gulp-uglify");
 
 function scripts() {
@@ -16,12 +16,30 @@ function styles() {
 }
 
 function images() {
-  return gulp.src("./src/images/**/*")
-    .pipe(imagemin())
-    .pipe(gulp.dest("./dist/images"));
+  // Usando copy nativo para evitar qualquer transformação
+  const { execSync } = require('child_process');
+  
+  try {
+    // Cria diretório se não existir
+    execSync('if not exist "dist\\images" mkdir "dist\\images"', { shell: true });
+    // Copia recursivamente preservando estrutura
+    execSync('robocopy "src\\images" "dist\\images" /E /NFL /NDL /NJH /NJS /NC /NS', { shell: true });
+  } catch (error) {
+    // robocopy retorna códigos de saída > 0 mesmo quando bem-sucedido
+    if (error.status > 7) {
+      console.error('Erro ao copiar imagens:', error);
+    }
+  }
+  
+  return Promise.resolve();
 }
 
-exports.default = gulp.parallel(styles, images, scripts);
+function copyHtml() {
+  return gulp.src("./index.html")
+    .pipe(gulp.dest("./dist"));
+}
+
+exports.default = gulp.parallel(styles, images, scripts, copyHtml);
 
 exports.watch = function () {
   gulp.watch("./src/styles/*.scss", gulp.parallel(styles));
