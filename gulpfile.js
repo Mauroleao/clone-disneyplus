@@ -39,7 +39,12 @@ function copyHtml() {
     .pipe(gulp.dest("./dist"));
 }
 
-exports.default = gulp.parallel(styles, images, scripts, copyHtml);
+function copyFonts() {
+  return gulp.src("./assets/fonts/*")
+    .pipe(gulp.dest("./dist/assets/fonts"));
+}
+
+exports.default = gulp.parallel(styles, images, scripts, copyHtml, copyFonts);
 
 exports.watch = function () {
   gulp.watch("./src/styles/*.scss", gulp.parallel(styles));
