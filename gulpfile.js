@@ -2,6 +2,8 @@ const gulp = require("gulp");
 const sass = require("gulp-sass")(require("sass"));
 // const imagemin = require("gulp-imagemin"); // Removido completamente
 const uglify = require("gulp-uglify");
+const fs = require('fs');
+const path = require('path');
 
 function scripts() {
   return gulp.src("./src/scripts/*.js")
@@ -33,8 +35,18 @@ function copyHtml() {
 }
 
 function copyFonts() {
-  return gulp.src("./assets/fonts/*")
-    .pipe(gulp.dest("./dist/assets/fonts"));
+  // Use Node's binary-safe copy to avoid any stream/encoding transformations
+  // that could corrupt binary font files when copied through gulp streams.
+  const srcDir = path.join(__dirname, 'assets', 'fonts');
+  const destDir = path.join(__dirname, 'dist', 'assets', 'fonts');
+  fs.mkdirSync(destDir, { recursive: true });
+  const files = fs.readdirSync(srcDir);
+  files.forEach((file) => {
+    const src = path.join(srcDir, file);
+    const dest = path.join(destDir, file);
+    fs.copyFileSync(src, dest);
+  });
+  return Promise.resolve();
 }
 
 exports.default = gulp.parallel(styles, images, imagesToPublic, scripts, copyHtml, copyFonts);
