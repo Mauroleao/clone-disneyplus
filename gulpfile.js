@@ -16,22 +16,8 @@ function styles() {
 }
 
 function images() {
-  // Usando copy nativo para evitar qualquer transformação
-  const { execSync } = require('child_process');
-  
-  try {
-    // Cria diretório se não existir
-    execSync('if not exist "dist\\images" mkdir "dist\\images"', { shell: true });
-    // Copia recursivamente preservando estrutura
-    execSync('robocopy "src\\images" "dist\\images" /E /NFL /NDL /NJH /NJS /NC /NS', { shell: true });
-  } catch (error) {
-    // robocopy retorna códigos de saída > 0 mesmo quando bem-sucedido
-    if (error.status > 7) {
-      console.error('Erro ao copiar imagens:', error);
-    }
-  }
-  
-  return Promise.resolve();
+  return gulp.src("./src/images/**/*")
+    .pipe(gulp.dest("./dist/images"));
 }
 
 function copyHtml() {
