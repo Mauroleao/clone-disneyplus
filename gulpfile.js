@@ -18,15 +18,53 @@ function styles() {
 }
 
 function images() {
-  return gulp.src("./src/images/**/*")
-    .pipe(gulp.dest("./dist/images"));
+  // Copy images using Node's binary-safe copy to avoid any stream
+  // transformations that could corrupt binary image files.
+  const srcDir = path.join(__dirname, 'src', 'images');
+  const destDir = path.join(__dirname, 'dist', 'images');
+  fs.mkdirSync(destDir, { recursive: true });
+  const walk = (dir) => {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    entries.forEach((entry) => {
+      const srcPath = path.join(dir, entry.name);
+      const rel = path.relative(srcDir, srcPath);
+      const destPath = path.join(destDir, rel);
+      if (entry.isDirectory()) {
+        fs.mkdirSync(destPath, { recursive: true });
+        walk(srcPath);
+      } else if (entry.isFile()) {
+        fs.mkdirSync(path.dirname(destPath), { recursive: true });
+        fs.copyFileSync(srcPath, destPath);
+      }
+    });
+  };
+  walk(srcDir);
+  return Promise.resolve();
 }
 
 // Also copy images into a public-like folder so deployments that expect
 // a `public/` directory can find static assets at /public/... if needed.
 function imagesToPublic() {
-  return gulp.src("./src/images/**/*")
-    .pipe(gulp.dest("./dist/public/images"));
+  const srcDir = path.join(__dirname, 'src', 'images');
+  const destDir = path.join(__dirname, 'dist', 'public', 'images');
+  fs.mkdirSync(destDir, { recursive: true });
+  const walk = (dir) => {
+    const entries = fs.readdirSync(dir, { withFileTypes: true });
+    entries.forEach((entry) => {
+      const srcPath = path.join(dir, entry.name);
+      const rel = path.relative(path.join(__dirname, 'src', 'images'), srcPath);
+      const destPath = path.join(destDir, rel);
+      if (entry.isDirectory()) {
+        fs.mkdirSync(destPath, { recursive: true });
+        walk(srcPath);
+      } else if (entry.isFile()) {
+        fs.mkdirSync(path.dirname(destPath), { recursive: true });
+        fs.copyFileSync(srcPath, destPath);
+      }
+    });
+  };
+  walk(srcDir);
+  return Promise.resolve();
 }
 
 function copyHtml() {
