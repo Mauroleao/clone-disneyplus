@@ -1,0 +1,5 @@
+[33mcc939c8[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m Fix gulpfile.js images function to work on Linux (Vercel environment)
+[33m8f1f46e[m Atualizado caminho da imagem do Disney+ para incluir sublinhado no nome do arquivo
+[33m6bbabf1[m Atualizado caminhos de imagens para serem relativos no HTML
+[33m55e86b0[m Adicionado comando de desenvolvimento no arquivo de configuração do Vercel
+[33m4cd5dbc[m Atualizado caminhos de imagens para serem relativos, corrigindo referências no HTML
