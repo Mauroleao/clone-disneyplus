@@ -29,7 +29,9 @@
     &__container {
         padding: 8px 36px;
         display: flex;
-        justify-content: space-between;
+        align-items: center;
+        /* keep content left-aligned so logo + buttons appear together on the left */
+        justify-content: flex-start;
 
         @media (max-width: 768px) {
         padding: 0 12px 0 20px;
@@ -49,9 +51,12 @@
 
     &__links {
         display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-left: 12px; /* push links slightly away from logo */
 
         &__item {
-            margin: 5px;
+            margin: 0; /* gap handles spacing */
             transition: opacity .5s ease;
         }
     }
